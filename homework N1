@@ -1,0 +1,38 @@
+const checkNumbers = function (a, b) {
+  if (a === b) {
+    console.log("Equal");
+  } else {
+    console.log("Not equal");
+  }
+};
+checkNumbers(2, "2");
+
+const farenheitToCelsius = function (farenheit) {
+  const celsius = ((farenheit - 32) * 5) / 9;
+
+  if (typeof farenheit === "number") {
+    console.log(celsius);
+  } else {
+    return false;
+  }
+};
+farenheitToCelsius(100);
+
+const operators = function (a, b, operator) {
+  if (typeof a === "number" && typeof b === "number") {
+    if (operator === "+") {
+      console.log(a + b);
+    } else if (operator === "-") {
+      console.log(a - b);
+    } else if (operator === "*") {
+      console.log(a * b);
+    } else if (operator === "/") {
+      console.log(a / b);
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+};
+operators(10, 20, "*");
