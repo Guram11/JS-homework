@@ -1,0 +1,81 @@
+const user = [
+  { name: "Temo", age: 25 },
+  { name: "Lasha", age: 21 },
+  { name: "Ana", age: 28 },
+];
+
+const checkMinAge = function (arr) {
+  let ages = [];
+  for (const obj of arr) {
+    ages.push(obj.age);
+  }
+  console.log(Math.min.apply(null, ages));
+};
+checkMinAge(user);
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+const userObject1 = {
+  name: "John",
+  lastname: "Smith",
+  age: 30,
+};
+
+const returnIdenticalObject = function (obj) {
+  let userObject2 = {};
+
+  let objKey = [];
+  let objValue = [];
+
+  for (const x in obj) {
+    objKey.push(x);
+    objValue.push(obj[x]);
+  }
+
+  for (let i = 0; i < objKey.length; i++) {
+    userObject2[objKey[i]] = objValue[i];
+  }
+
+  console.log(userObject2);
+
+  return userObject2;
+};
+returnIdenticalObject(userObject1);
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+const randomNumberGenerator = function () {
+  return parseInt(Math.random() * 6) + 1;
+};
+
+let userA = randomNumberGenerator();
+
+let arrUserA = [];
+
+while (userA !== 3) {
+  userA = randomNumberGenerator();
+  arrUserA.push(userA);
+}
+
+let userB = randomNumberGenerator();
+
+let arrUserB = [];
+
+while (userB !== 3) {
+  userB = randomNumberGenerator();
+  arrUserB.push(userB);
+}
+
+if (arrUserA.length < arrUserB.length) {
+  console.log("User A wins");
+} else if (arrUserB.length < arrUserA.length) {
+  console.log("User B wins");
+} else {
+  console.log("Draw");
+}
