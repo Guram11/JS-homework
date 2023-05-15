@@ -1,0 +1,71 @@
+const getSum = function (num1, num2, ...num) {
+  let arr = [];
+  let multiply = 1;
+  const sum = num1 + num2;
+
+  for (const x of num) {
+    multiply *= x;
+  }
+
+  arr.push(sum, multiply);
+
+  return arr;
+};
+console.log(getSum(16, 2, 3, 4));
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+
+const user = {
+  name: "Giorgi",
+  banks: [
+    "TBC",
+    "BOG",
+    {
+      address: {
+        country: "Georgia",
+        // city: "Tbilisi",
+      },
+    },
+  ],
+};
+
+console.log(user.banks[2].address.city);
+
+const returnParameter = function ({ banks }) {
+  const {
+    address: { city },
+  } = banks[2];
+
+  console.log(city);
+  return city;
+};
+returnParameter(user);
+
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+
+const user1 = {
+  firstname: "John",
+  lastname: "Smith",
+  address: {
+    country: "Georgia",
+    city: {
+      cityName: "Tbilisi",
+      district: "Saburtalo",
+    },
+  },
+};
+
+const returnObject = function (user1) {
+  const user2 = { ...user1 };
+
+  console.log(user2);
+
+  return user2;
+};
+returnObject(user1);
