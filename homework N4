@@ -36,8 +36,6 @@ const users = [
   { name: "Nino", age: 67 },
 ];
 
-console.log(users.slice());
-
 const sortAges = function (arr) {
   const sortNames = (arr) =>
     arr.sort((a, b) => a.age - b.age).map(({ name }) => name);
