@@ -1,0 +1,67 @@
+const returnString = function (string, valueToReplace, valueToReplaceWith) {
+  const newString = string.split(" ");
+  newString[newString.indexOf(valueToReplace)] = valueToReplaceWith;
+
+  console.log(newString.join(" "));
+
+  return newString.join(" ");
+};
+
+returnString("Hello James Bond", "James", "John");
+
+const arr1 = [1, 2, 3, 4];
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+const paragraph = "Lorem, ipsum dolor sit amet consectetur adipisicing elit";
+
+const returnToUppercase = function (paragraph) {
+  const newParagraph = paragraph.toUpperCase();
+  console.log(newParagraph);
+
+  return newParagraph;
+};
+returnToUppercase(paragraph);
+
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+const users = [
+  { name: "Lasha", age: 30 },
+  { name: "Saba", age: 20 },
+  { name: "Ana", age: 25 },
+  { name: "Nino", age: 67 },
+];
+
+console.log(users.slice());
+
+const sortAges = function (arr) {
+  const sortNames = (arr) =>
+    arr.sort((a, b) => a.age - b.age).map(({ name }) => name);
+
+  const ages = [];
+  const newArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    ages.push(arr[i].age);
+  }
+
+  const sortedAges = ages.sort(function (a, b) {
+    return a - b;
+  });
+
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push({
+      name: sortNames(users)[i],
+      age: sortedAges[i],
+    });
+  }
+
+  console.log(newArr);
+
+  return newArr;
+};
+sortAges(users);
