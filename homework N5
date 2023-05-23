@@ -1,0 +1,85 @@
+const div = document.createElement("div");
+div.style.width = "100px";
+div.style.height = "100px";
+div.style.background = "red";
+div.style.color = "white";
+div.innerHTML = "Hello World";
+div.id = "div";
+
+const button = document.createElement("button");
+button.innerHTML = "Hide div";
+button.id = "button";
+
+document.body.append(div, button);
+
+button.addEventListener("click", () => {
+  if (div.style.display === "none") {
+    div.style.display = "block";
+  } else {
+    div.style.display = "none";
+  }
+});
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+const div1 = document.createElement("div");
+div1.id = "card";
+
+const h2 = document.createElement("h2");
+h2.innerHTML = "Gandalf";
+
+const a = document.createElement("a");
+a.href = "#";
+a.innerHTML = "Go to profile";
+
+div1.append(h2, a);
+
+document.body.append(div1);
+
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+const div2 = document.createElement("div");
+const h1 = document.createElement("h1");
+const p1 = document.createElement("button");
+const p2 = document.createElement("button");
+const p3 = document.createElement("button");
+const p4 = document.createElement("button");
+const p5 = document.createElement("p");
+
+h1.innerHTML = "Select correct answer: 2+2 ?";
+p1.innerHTML = "A. 0";
+p2.innerHTML = "B. 1";
+p3.innerHTML = "C. 4";
+p4.innerHTML = "D. 5";
+p5.innerHTML = "Your score: 0";
+
+p1.style.display = "block";
+p2.style.display = "block";
+p3.style.display = "block";
+p4.style.display = "block";
+
+div2.append(h1, p1, p2, p3, p4, p5);
+document.body.append(div2);
+
+p3.addEventListener("click", () => {
+  p3.style.backgroundColor = "green";
+  p5.innerHTML = "Your score: 1";
+});
+
+p1.addEventListener("click", () => {
+  p1.style.backgroundColor = "red";
+});
+
+p2.addEventListener("click", () => {
+  p2.style.backgroundColor = "red";
+});
+
+p4.addEventListener("click", () => {
+  p4.style.backgroundColor = "red";
+});
