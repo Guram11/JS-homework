@@ -1,0 +1,126 @@
+const button = document.createElement("button");
+button.innerHTML = "Modal";
+button.style.margin = "0 auto";
+button.style.display = "block";
+
+const buttonInner = document.createElement("button");
+buttonInner.innerHTML = "Close";
+buttonInner.style.margin = "0 auto";
+buttonInner.style.display = "block";
+
+const modalContent = document.createElement("div");
+modalContent.className = "modal-content";
+modalContent.style.height = "20%";
+modalContent.style.width = "20%";
+modalContent.style.backgroundColor = "red";
+modalContent.innerHTML = "Modal Window";
+modalContent.style.margin = "100px auto";
+
+const modal = document.createElement("div");
+modal.style.height = "100vh";
+modal.style.width = "100vw";
+modal.style.backgroundColor = "rgba(0,0,0,0.5)";
+modal.style.color = "white";
+modal.style.display = "none";
+modal.style.position = "fixed";
+modal.style.top = 0;
+modal.style.left = 0;
+
+modalContent.append(buttonInner);
+modal.append(modalContent);
+document.body.append(modal, button);
+
+button.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+window.addEventListener("click", function (event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+buttonInner.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+const button1 = document.createElement("button");
+const input = document.createElement("input");
+
+button1.innerHTML = "Click";
+input.placeholder = "Enter a color";
+
+document.body.append(input, button1);
+
+button1.addEventListener("click", () => {
+  if (input.value === "red") {
+    document.body.style.backgroundColor = "red";
+  } else if (input.value === "blue") {
+    document.body.style.backgroundColor = "blue";
+  } else if (input.value === "green") {
+    document.body.style.backgroundColor = "green";
+  } else if (input.value === "black") {
+    document.body.style.backgroundColor = "black";
+  } else if (input.value === "white") {
+    document.body.style.backgroundColor = "white";
+  } else {
+    alert("Invalid color, please choose from: red, blue, green, black, white");
+    document.body.style.backgroundColor = "white";
+  }
+
+  input.value = "";
+});
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+
+const button2 = document.createElement("button");
+const input2 = document.createElement("input");
+const paragraph = document.createElement("p");
+
+button2.innerHTML = "Average";
+input2.placeholder = "Enter numbers";
+
+document.body.append(input2, button2, paragraph);
+
+const calcAverage = function (arr) {
+  let sum = 0;
+  for (const n of arr) {
+    sum += n;
+  }
+  return sum / arr.length;
+};
+
+button2.addEventListener("click", () => {
+  const arr1 = input2.value.split(":").map((e) => e * 1);
+
+  if (arr1.includes(NaN)) {
+    alert('Please enter only numbers divided with a colon, example: "1:2:3"');
+    input2.value = "";
+    return;
+  }
+
+  if (input2.value.startsWith(":") || input2.value.endsWith(":")) {
+    alert("Your input should start and end with a number, example: '1:2:3'");
+    input2.value = "";
+    return;
+  }
+
+  if (!input2.value.includes(":")) {
+    alert('Your input should include a colon(:), example: "1:2:3" ');
+    input2.value = "";
+    return;
+  }
+
+  paragraph.innerHTML = `Average of your numbers: ${calcAverage(arr1)}`;
+  input2.value = "";
+});
