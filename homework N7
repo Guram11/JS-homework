@@ -1,0 +1,104 @@
+function mySetTimeout(delay, value) {
+  return new Promise((resolve) => setTimeout(() => resolve(value), delay));
+}
+mySetTimeout(3000, "value").then((res) => console.log(res));
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+//Toy factory using Promises (Then / Catch)
+
+function makeToys(delay) {
+  return new Promise((resolve, reject) => {
+    if (Math.random() > 0.1) {
+      setTimeout(() => resolve("Undefected"), delay);
+    } else {
+      reject("Defected");
+    }
+  });
+}
+
+function delieverToys(status, delay) {
+  return new Promise((resolve, reject) => {
+    if (status === "Undefected") {
+      if (Math.random() > 0.1) {
+        setTimeout(() => resolve("Delivered"), delay);
+      } else {
+        reject("Not delivered");
+      }
+    }
+  });
+}
+
+function sellToys(status, delay) {
+  return new Promise((resolve, reject) => {
+    if (status === "Delivered") {
+      if (Math.random() > 0.1) {
+        setTimeout(() => resolve("Toy has been sold"), delay);
+      } else {
+        reject("Toy was unsuccessful");
+      }
+    }
+  });
+}
+
+makeToys(3000)
+  .then((statusDelivered) => delieverToys(statusDelivered, 2000))
+  .then((statusSold) => sellToys(statusSold, 1000))
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
+
+// Toy factory using (Async / await)
+
+async function makeToys(delay, value = "Undefected") {
+  if (Math.random() > 0.1) {
+    return mySetTimeout(delay, value);
+  } else {
+    return "Defected";
+  }
+}
+
+async function delieverToys(status, delay, value = "Delivered") {
+  if (status === "Undefected") {
+    if (Math.random() > 0.1) {
+      return mySetTimeout(delay, value);
+    } else {
+      return "Not delivered";
+    }
+  }
+}
+
+async function sellToys(status, delay, value = "Toy has been sold") {
+  if (status === "Delivered") {
+    if (Math.random() > 0.1) {
+      return mySetTimeout(delay, value);
+    } else {
+      return "Toy was unsuccessful";
+    }
+  }
+}
+
+async function promisify() {
+  try {
+    const statusMade = await makeToys(3000);
+    const statusDelivered = await delieverToys(statusMade, 2000);
+    const statusSold = await sellToys(statusDelivered, 1000);
+    if (!statusSold) {
+      if (!statusDelivered) {
+        console.log(statusMade);
+      } else {
+        console.log(statusDelivered);
+      }
+    } else {
+      console.log(statusSold);
+    }
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+}
+
+promisify();
