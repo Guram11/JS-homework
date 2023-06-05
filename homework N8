@@ -1,0 +1,80 @@
+const square = function (number, i) {
+  return number ** i;
+};
+
+const expo = function (number, exp, square) {
+  if (exp === 0) return 1;
+  console.log(square(number, exp));
+  return square(number, exp);
+};
+
+expo(5, 3, square);
+
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+async function fetchData() {
+  const rawData = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const data = await rawData.json();
+  console.log(data);
+
+  for (const x of data) {
+    const title = document.createElement("h1");
+    const body = document.createElement("p");
+    const div = document.createElement("div");
+    div.append(title, body);
+    div.style.width = "500px";
+    div.style.backgroundColor = "orange";
+    div.style.padding = "10px";
+    div.style.margin = "20px";
+    document.body.append(div);
+
+    title.innerText = x.title;
+    body.innerText = x.body;
+  }
+}
+fetchData();
+
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+function deepCopy(obj) {
+  return new Promise((resolve, reject) => {
+    if (typeof obj === "object") {
+      const result = {};
+
+      for (const fn in obj) {
+        if (typeof obj[fn] === "object") {
+          if (Array.isArray(obj[fn])) {
+            result[fn] = obj[fn].map(
+              (el) => deepCopy(el),
+              deepCopy()
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err))
+            );
+          } else {
+            result[fn] = deepCopy(obj[fn]);
+            deepCopy()
+              .then((res) => console.log(res))
+              .catch((err) => console.log(err));
+          }
+        } else {
+          result[fn] = obj[fn];
+        }
+      }
+      resolve(result);
+    } else {
+      reject("Inputed value is not an object!");
+    }
+  });
+}
+
+deepCopy()
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
